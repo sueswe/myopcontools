@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "rb-Tools:"
+for n in ${HOME}/bin/*.rb
+do
+    echo ""
+    echo "${n}:"
+    grep -i Description $n
+    echo ""
+done
+
