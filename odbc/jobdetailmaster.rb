@@ -76,25 +76,28 @@ else
   # puts "Name of Database: ".rjust(20) + DB.red
 end
 
-SCHEDULENAME = if options[:schedulename].nil?
-                 '%'
-               else
-                 options[:schedulename]
-               end
+SCHEDULENAME = 
+if options[:schedulename].nil?
+  '%'
+else
+  options[:schedulename]
+end
 # puts "Schedulename: ".rjust(20) + SCHEDULENAME.red
 
-JOBNAME = if options[:jobname].nil?
-            '%'
-          else
-            options[:jobname]
-          end
+JOBNAME = 
+if options[:jobname].nil?
+  '%'
+else
+  options[:jobname]
+end
 # puts "Job: ".rjust(20) + JOBNAME.red
 
-JAVALUE = if options[:value].nil?
-            '%'
-          else
-            options[:value]
-          end
+JAVALUE = 
+if options[:value].nil?
+  '%'
+else
+  options[:value]
+end
 # puts "ja-value: ".rjust(20) + JAVALUE.red
 
 
@@ -110,10 +113,7 @@ sql = "
     where skdname like '#{SCHEDULENAME}'
     and jmaster.jobname like '#{JOBNAME}'
     and javalue like '#{JAVALUE}'
-    "
-#
-#--and jafc like (?)
-
+"
 
 ################################################################################
 def dbConnect
