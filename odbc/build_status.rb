@@ -81,10 +81,10 @@ optparse = OptionParser.new do |opts|
     options[:buildstate] = b
   end
   
-  options[:showbuildtstates] = nil
-  opts.on('-l','--list-states','Show build states from JSTATMAP') do
-    options[:showbuildtstates] = true
-  end
+  #options[:showbuildtstates] = nil
+  #opts.on('-l','--list-states','Show build states from JSTATMAP') do
+  #  options[:showbuildtstates] = true
+  #end
 
   opts.on('-h', '--help', 'Display this screen') do
     puts 'Description: find jobstates and frequencies in JOBMASTER.'
@@ -108,7 +108,7 @@ optparse.parse!
 $separator = "#{options[:fieldsep]}"
 
 if options[:databaseName].nil?
-  puts "Missing DB name. Use -h for help.".cyan
+  puts "Use -h for help.".red
   puts optparse
   exit 2
 else
@@ -120,7 +120,7 @@ end
 if options[:showbuildtstates].nil?
   puts ""
 else
-  $sql = 'select * from dbo.JSTATMAP where JOBSTATUS = 0'
+  $sql = 'select * from dbo.JSTATMAP'
   puts $sql.yellow
   run_the_statement
   exit 0
