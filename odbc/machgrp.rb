@@ -118,8 +118,11 @@ while row = sth.fetch
   rowValues = ''
   # for i in (0 .. 9) do
   (0..colCount - 1).each do |n|
+    
     val = row[n]
     val = '<<NULL>>' if val.nil?
+    val = val.gsub(/\s+/, "")
+
     rowValues.concat(val + separator)
   end
   puts rowValues
