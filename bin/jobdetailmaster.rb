@@ -29,6 +29,10 @@ options = {}
 optparse = OptionParser.new do |opts|
   opts.banner = "Usage: #{myname} [options]"
 
+  opts.on('-n','--nulljobs','select only NULL Jobs') do
+    options[:nulljob] = true
+  end
+
   options[:fieldsep] = ' | '
   opts.on('-f', '--fieldseparator F', 'optional; Fieldseparator, default is |') do |x|
     options[:fieldsep] = x
@@ -76,7 +80,7 @@ else
   # puts "Name of Database: ".rjust(20) + DB.red
 end
 
-SCHEDULENAME = 
+SCHEDULENAME =
 if options[:schedulename].nil?
   '%'
 else
@@ -84,7 +88,7 @@ else
 end
 # puts "Schedulename: ".rjust(20) + SCHEDULENAME.red
 
-JOBNAME = 
+JOBNAME =
 if options[:jobname].nil?
   '%'
 else
@@ -92,7 +96,7 @@ else
 end
 # puts "Job: ".rjust(20) + JOBNAME.red
 
-JAVALUE = 
+JAVALUE =
 if options[:value].nil?
   '%'
 else
@@ -106,13 +110,21 @@ end
 # SQL
 #
 sql = "
-    select skdname,jmaster.jobname,javalue,jafc
-    from jmaster
-    join sname on jmaster.skdid = sname.skdid
-    join jmaster_aux on jmaster.skdid = jmaster_aux.skdid and jmaster.jobname = jmaster_aux.jobname
-    where skdname like '#{SCHEDULENAME}'
-    and jmaster.jobname like '#{JOBNAME}'
-    and javalue like '#{JAVALUE}'
+select skdname,jmaster.jobname,javalue,jafc
+from jmaster
+join sname on jmaster.skdid = sname.skdid
+join jmaster_aux on jmaster.skdid = jmaster_aux.skdid and jmaster.jobname = jmaster_aux.jobname
+where skdname like '#{SCHEDULENAME}'
+and jmaster.jobname like '#{JOBNAME}'
+and javalue like '#{JAVALUE}'
+"
+
+sql_null_job = "
+select skdname,jmaster.jobname
+from jmaster
+join sname on jmaster.skdid = sname.skdid
+where skdname like '#{SCHEDULENAME}'
+and jmaster.jobname like '#{JOBNAME}'
 "
 
 ################################################################################
@@ -125,7 +137,11 @@ end
 
 dbh = dbConnect
 
-sth = dbh.execute(sql)
+if options[:nulljob].nil?
+    sth = dbh.execute(sql)
+else
+    sth = dbh.execute(sql_null_job)
+end
 
 colCount = sth.column_names.size
 # puts "(ColCount: " + colCount.to_s.cyan + ")"
