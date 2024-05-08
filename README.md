@@ -33,7 +33,6 @@ and much more.
 |history.rb |       enables the possibility to search the HISTORY-table.|
 |jobdetailmaster.rb |       selects MASTER-Jobs - configurations.|
 |jobdocu.rb |       selects Job-documentation from the MASTER-Jobs.|
-|jobs-and-department.rb |       show MASTER-Job-configurations in context with departments .|
 |jobs-and-frequencies.rb |       selects MASTER-Job - configurations and frequencies.|
 |jobs-and-machgrp.rb |       show MASTER-Job-configurations in context with machine groups.|
 |jobs-on-which-machine.rb |       selects jobnames and machine-groups or machines.|
