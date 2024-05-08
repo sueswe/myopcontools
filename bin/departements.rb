@@ -37,7 +37,7 @@ optparse = OptionParser.new do |opts|
   end
 
   options[:schedulename] = nil
-  opts.on('-s', '--schedule-name SN', 'Schedule-Name') do |schname|
+  opts.on('-s', '--schedule-name SN', 'optional; Schedule-Name') do |schname|
     options[:schedulename] = schname
   end
 

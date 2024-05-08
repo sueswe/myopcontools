@@ -41,22 +41,22 @@ optparse = OptionParser.new do |opts|
 
 
   options[:scheduledate] = nil
-  opts.on('-w', '--when-schedule-date SD', 'when: Schedule-Date (YYYY-MM-DD)') do |schdate|
+  opts.on('-w', '--when-schedule-date SD', 'mandatory; when: Schedule-Date (YYYY-MM-DD)') do |schdate|
     options[:scheduledate] = schdate
   end
 
   options[:schedulename] = nil
-  opts.on('-s', '--schedule-name SN', 'Schedule-Name') do |schname|
+  opts.on('-s', '--schedule-name SN', 'optional; Schedule-Name') do |schname|
     options[:schedulename] = schname
   end
 
   options[:jobname] = nil
-  opts.on('-j', '--jobname JN', 'Job-Name') do |jbn|
+  opts.on('-j', '--jobname JN', 'optional; Job-Name') do |jbn|
     options[:jobname] = jbn
   end
 
   options[:value] = nil
-  opts.on('-i', '--startimage S', 'Startimage-field') do |val|
+  opts.on('-i', '--startimage S', 'optional; Startimage-field') do |val|
     options[:value] = val
   end
 

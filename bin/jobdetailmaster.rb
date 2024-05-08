@@ -44,17 +44,17 @@ optparse = OptionParser.new do |opts|
   end
 
   options[:schedulename] = nil
-  opts.on('-s', '--schedule-name SN', 'Schedule-Name') do |schname|
+  opts.on('-s', '--schedule-name SN', 'optional; Schedule-Name') do |schname|
     options[:schedulename] = schname
   end
 
   options[:jobname] = nil
-  opts.on('-j', '--jobname JN', 'Job-Name') do |jbn|
+  opts.on('-j', '--jobname JN', 'optional; Job-Name') do |jbn|
     options[:jobname] = jbn
   end
 
   options[:value] = nil
-  opts.on('-v', '--value V', 'JA-Value') do |val|
+  opts.on('-v', '--value V', 'optional; JA-Value') do |val|
     options[:value] = val
   end
 
