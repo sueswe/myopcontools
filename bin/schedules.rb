@@ -28,9 +28,9 @@ end
 # SQL
 #
 structuredQueryLanguage = "
-    select DISTINCT SKDNAME from SNAME
-    JOIN SNAME_AUX ON SNAME.skdid = SNAME_AUX.skdid
-    ORDER BY SKDNAME ASC;
+select DISTINCT SNAME.SKDNAME,SNAME.SKDID from SNAME
+JOIN SNAME_AUX ON SNAME.skdid = SNAME_AUX.skdid
+ORDER BY SKDNAME ASC;
     "
 
 sql_mit_docu = "
@@ -42,7 +42,7 @@ sql_mit_docu = "
 "
 
 autobuild = "
-    select distinct SKDNAME from sname_aux
+    select distinct SKDNAME,SKDID from sname_aux
     join sname on sname_aux.skdid = sname.skdid
     and (safc = 105 or safc = 109)
 "
@@ -131,7 +131,7 @@ while row = sth.fetch
   (0..colCount - 1).each do |n|
     val = row[n]
     val = '<<NULL>>' if val.nil?
-    rowValues.concat(val + separator)
+    rowValues.concat(val.to_s + separator)
   end
   puts rowValues
 end
