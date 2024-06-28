@@ -95,7 +95,7 @@ sql = "
         ,JSTAT as 'JobStatus'
     FROM dbo.HISTORY
     JOIN SNAME ON (HISTORY.SKDID=SNAME.SKDID)
-        WHERE SKDDATE > convert(smalldatetime,'2019-01-01') + 2
+        WHERE SKDDATE > convert(smalldatetime,'2000-01-01') + 2
         AND (SKDNAME LIKE '%#{schedulename}%' )
         --AND JSTAT = '900'
         --AND JRUN > '0'
