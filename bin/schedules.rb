@@ -42,9 +42,16 @@ sql_mit_docu = "
 "
 
 autobuild = "
-    select distinct SKDNAME,SKDID from sname_aux
+    select distinct SKDNAME from sname_aux
     join sname on sname_aux.skdid = sname.skdid
     and (safc = 105 or safc = 109)
+"
+
+sql_autodelete = "
+  select distinct SKDNAME,SAVALUE from sname_aux
+  join sname on sname_aux.skdid = sname.skdid
+  --and SNAME.SKDNAME like '00-SCHEDULING'
+  and SAFC = '106'
 "
 #
 #
@@ -63,6 +70,12 @@ optparse = OptionParser.new do |opts|
   opts.on('-d', '--databasename DB', 'mandatory; database name (prefix = \'opconxps_\')') do |dbname|
     options[:databaseName] = dbname
   end
+
+  options[:autodelete] = nil
+  opts.on('-r','--remove_auto','show days for AUTODELETE (remove) ') do 
+    options[:autodelete] = true
+  end
+  
 
   options[:autobuild] = nil
   opts.on('-a', '--autoBuild', 'Autobuild Flag') do
@@ -112,6 +125,8 @@ sth = if !options[:autobuild].nil?
         dbh.execute(autobuild)
       elsif !options[:docu].nil?
         dbh.execute(sql_mit_docu)
+      elsif !options[:autodelete].nil?
+        dbh.execute(sql_autodelete)
       else
         dbh.execute(structuredQueryLanguage)
       end
