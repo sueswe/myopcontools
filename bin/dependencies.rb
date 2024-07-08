@@ -70,37 +70,12 @@ SCHEDULENAME = if options[:schedulename].nil?
 # SQL
 #####################################################################
 sql = "
-select
-jmaster.jobname as Jobname ,
-depjobname as Abhaengigkeit,
-replace(replace(replace(deptype,'131','Weiter'),'3','Stop'),'1','Benoetigt') as 'DepType',
---JAVALUE as 'Script und Parameter',
---(
---  SELECT JAVALUE
---  FROM jmaster_aux
---  JOIN sname ON jmaster_aux.skdid = sname.skdid
---  WHERE jmaster_aux.skdid = jmaster.skdid
---  AND JAFC = '6002'
---  AND Jobname = jmaster.jobname
---) AS Parameter,
-jskd.Freqname
---jdocs.doctext
-from jmaster
-  left join sname on jmaster.skdid = sname.skdid
-  left join jdepjob on jmaster.jobname = jdepjob.jobname
-  left join jmaster_aux on jmaster.jobname = jmaster_aux.jobname
-  left join jskd on jmaster.jobname = jskd.jobname
--- left join jdocs on jmaster.jobname = jdocs.jobname
-where skdname = '#{SCHEDULENAME}'
-  and jdepjob.SKDID = jmaster.skdid
-  --and jmaster.jobname not like 'B%N%START%'
-  --and jmaster.jobname not like 'B%N%END%'
-  and jmaster_aux.skdid = jmaster.skdid
-  and jskd.skdid = jmaster.skdid
-  --and (jmaster.skdid = jdocs.skdid or jdocs.doctext is null)
-  --and jskd.freqname != 'OR'
-  and jmaster_aux.jafc = '6001'
-  order by jmaster.jobname
+select 	jobname,
+		    depjobname,
+		    replace(replace(replace(deptype,'131','Weiter'),'3','Stop'),'1','Benoetigt') as 'DepType',
+		    b.skdname from jdepjob
+join sname a on jdepjob.skdid = a.skdid join sname b on jdepjob.depskdid = b.skdid
+where a.skdname = '#{SCHEDULENAME}'
 "
 
 
