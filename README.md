@@ -90,6 +90,17 @@ Please refer to:
 
 https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15
 
+After installing the driver, you need to create a $HOME/.odbc.ini:
+
+~~~
+[MSSQLTest]  
+Driver = ODBC Driver 18 for SQL Server  
+# Server = [protocol:]server[,port]  
+Server = tcp:localhost,1433
+Database = name_of_DB
+TrustServerCertificate = yes
+Encrypt = yes
+~~~
 
 ## Installing the tools to ${HOME}/bin
 
