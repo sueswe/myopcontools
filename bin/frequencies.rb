@@ -135,5 +135,5 @@ while row = sth.fetch
 end
 
 sth.finish
-
+puts "(AOBN-Value wird nicht in den FREQU-Code miteinberechnet.)"
 dbh.disconnect if dbh
