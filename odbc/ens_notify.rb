@@ -1,13 +1,5 @@
 #!/usr/bin/env ruby
 
-$sql = "
-SELECT SUBSTRING(ACTIONMSG,0,150),GROUPNAME
-FROM ENSMESSAGES
-JOIN ENSGROUPS ON (ENSGROUPS.GROUPOFID = ENSMESSAGES.GROUPOFID)
---WHERE GROUPNAME LIKE '14%'
-ORDER BY GROUPNAME ASC;
-"
-
 require 'dbi'
 require 'colorize'
 require 'optparse'
@@ -46,6 +38,11 @@ optparse = OptionParser.new do |opts|
     options[:databaseName] = dbname
   end
 
+  options[:gruppe] = nil
+  opts.on('-g', '--group GR', 'mandatory; Filter nach Gruppe ') do |g|
+    options[:gruppe] = g
+  end
+
   opts.on('-h', '--help', '(Display this screen)') do
     puts 'Description: Show ENS_NOTIFICATION informations.'
     puts opts
@@ -63,21 +60,36 @@ optparse.parse!
 
 
 if options[:databaseName].nil?
-    # puts "Missing DB name postifx. Use -h for help.".cyan
-    puts optparse
-    exit 2
+  # puts "Missing DB name postifx. Use -h for help.".cyan
+  puts optparse
+  exit 2
+else
+  DB = "#{options[:databaseName]}"
+  # puts 'Name of Database: ' + DB
 end
-if options[:databaseName]
-    DB = "#{options[:databaseName]}"
-    puts 'Name of Database: ' + DB
+
+if options[:gruppe].nil?
+  puts optparse
+  exit 2
+else
+  gruppe = options[:gruppe].to_s
 end
+
+
 
 separator = "#{options[:fieldsep]}"
-puts "FIELDseparator: #{separator}"
+# puts "FIELDseparator: #{separator}"
 
 
 
-
+$sql = "
+--SELECT GROUPTYPE,GROUPNAME,SUBSTRING(ACTIONMSG,0,180)
+SELECT GROUPTYPE,GROUPNAME,ACTIONMSG
+FROM ENSMESSAGES
+JOIN ENSGROUPS ON (ENSGROUPS.GROUPOFID = ENSMESSAGES.GROUPOFID)
+WHERE GROUPNAME LIKE '%#{gruppe}%'
+ORDER BY GROUPNAME ASC;
+"
 
 
 
@@ -110,7 +122,8 @@ while row = sth.fetch
         val = row[n].to_s
         v = val.gsub('<MAILTO>','').gsub('<MAILCC>',',').gsub('</MAILTO>',',').gsub('</MAILCC>',',').gsub('<MAILBCC>',',').gsub('</MAILBCC>',',')
         w = v.gsub('<MAILSUBJ>',' ; TEXT = ')
-        rowValues.concat(w + separator)
+        puts '#' * 70 + "\n"
+        rowValues.concat( w + separator)
     end
     puts rowValues
 end
