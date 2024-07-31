@@ -71,7 +71,7 @@ optparse = OptionParser.new do |opts|
     options[:databaseName] = dbname
   end
   opts.on('-h', '--help', 'Display this screen') do
-    puts 'Description: EXEC sp_spaceused'
+    puts 'Description: selects table spaces in kB, MB '
     puts opts
     exit
   end

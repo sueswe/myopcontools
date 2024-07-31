@@ -45,10 +45,10 @@ and much more.
 | openschedules.rb |      'Description: selects open schedules (not in state completed).' |
 | properties.rb |      'Description: selects properties and values.' |
 | ressources.rb |      'Description: selects resources, jobs and values.' |
-| roles.rb |      'Description: selects roles, included users and their email-adress.' |
+| roles.rb |      'Description: selects roles, included users and their email-address.' |
 | schedules.rb |      'Description: selects schedules and autobuild-configuration.' |
 | starttimes.rb |      'Description: selects jobs with starttimes (only when start-offset not 0).' |
-| table_space_size.rb |      'Description: EXEC sp_spaceused' |
+| table_space_size.rb |      'Description: selects table spaces in kB, MB' |
 
 
 

@@ -63,7 +63,7 @@ optparse = OptionParser.new do |opts|
     options[:rolesonly] = true
   end
   opts.on('-h', '--help', 'Display this screen') do
-    puts 'Description: selects roles, included users and their email-adress.'
+    puts 'Description: selects roles, users and their email-address.'
     puts opts
     exit
   end
