@@ -39,12 +39,12 @@ optparse = OptionParser.new do |opts|
   end
 
   options[:gruppe] = nil
-  opts.on('-g', '--group GR', 'mandatory; Filter nach Gruppe ') do |g|
+  opts.on('-g', '--group GR', 'mandatory; Filter group ') do |g|
     options[:gruppe] = g
   end
 
   opts.on('-h', '--help', '(Display this screen)') do
-    puts 'Description: Show ENS_NOTIFICATION informations.'
+    puts 'Description: Show entries about ENS_NOTIFICATION informations.'
     puts opts
     # puts String.colors
     # puts "Sonstiges: ".yellow

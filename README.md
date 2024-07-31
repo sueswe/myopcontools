@@ -16,36 +16,40 @@ and much more.
 
 | Name | a very short description |
 | :--- | :--- |
-|audit.rb |       Search the AUDIT-table.|
-|batchuser.rb |       selects the batch-user.|
-|build_status.rb |       find jobstates and frequencies in JOBMASTER.|
-|calendar.rb |       selects data from calenders.|
-|crossscheduledeps.rb |       selects jobs with cross-schedule-dependencies'|
-|departements.rb |       selects MASTER-Jobs with departement.|
-|dependencies.rb |       prints jobs and dependecies with frequency'|
-|disabled-frequencies.rb |       lookup jobs with a disabled frequency.|
-|diskfree.rb |       Get a list of databases file with size and free space for a database in SQL Server.|
-|donotschedule-frequs.rb |       lookup jobs with a frequency set to "Do Not Schedule".|
-|events.rb |       selects EVENTS with Jobname, Eventstring and Schedulename.|
-|frequencies.rb |       selects all Frequencies, including Frequency-Code and After/On/Before/NotSchedule-configuration.|
-|getJSONschedule.rb |       Get Schedules from DEPLOY-DB in JSON format.|
-|getJSONtr.rb |       Read transformation-rules from DEPLOY-DB in JSON format.|
-|history.rb |       enables the possibility to search the HISTORY-table.|
-|jobdetailmaster.rb |       selects MASTER-Jobs - configurations.|
-|jobdocu.rb |       selects Job-documentation from the MASTER-Jobs.|
-|jobs-and-frequencies.rb |       selects MASTER-Job - configurations and frequencies.|
-|jobs-and-machgrp.rb |       show MASTER-Job-configurations in context with machine groups.|
-|jobs-on-which-machine.rb |       selects jobnames and machine-groups or machines.|
-|jobstates.rb |       selects current job-state (dependend on schedule-date and schedule).|
-|lsam.rb |       selects agents, OS, ports, and connect-status.|
-|machgrp.rb |       selects machinegroups and machines.|
-|opcusersignon.rb |       selects user, login-time and client-version.|
-|openschedules.rb |       selects open schedules (not in state completed).|
-|properties.rb |       selects properties and values.|
-|ressources.rb |       selects resources, jobs and values.|
-|roles.rb |       selects roles, included users and their email-adress.|
-|schedules.rb |       selects schedules and autobuild-configuration.|
-|starttimes.rb |       selects jobs with starttimes (only when start-offset not 0).|
+| audit.rb |      'Description: Search the AUDIT-table.' |
+| batchuser.rb |      'Description: selects the batch-user.' |
+| build_status.rb |      'Description: find jobstates and frequencies in JOBMASTER.' |
+| calendar.rb |      'Description: selects data from calenders.' |
+| crossscheduledeps.rb |      'Description: selects jobs with cross-schedule-dependencies' |
+| departements.rb |      'Description: selects MASTER-Jobs with departement.' |
+| dependencies.rb |      'Description: prints jobs and dependecies with frequency' |
+| disabled-frequencies.rb |      'Description: lookup jobs with a disabled frequency.' |
+| diskfree.rb |      'Description: Get a list of databases file with size and free space for a database in SQL Server.' |
+| donotschedule-frequs.rb |      'Description: lookup jobs with a frequency set to "Do Not Schedule".' |
+| ens_notify.rb |      'Description: Show entries about ENS_NOTIFICATION informations.' |
+| events.rb |      'Description: selects EVENTS with Jobname, Eventstring and Schedulename.' |
+| frequencies.rb |      'Description: selects all Frequencies, including Frequency-Code and After/On/Before/NotSchedule-configuration.' |
+| getJSONschedule.rb |      'Description: Get Schedules from DEPLOY-DB in JSON format.' |
+| getJSONtr.rb |      'Description: Read transformation-rules from DEPLOY-DB in JSON format.' |
+| history.rb |      'Description: enables the possibility to search the HISTORY-table.' |
+| jobdetaildaily.rb |      'Description: selects DAILY-Jobs - configurations.' |
+| jobdetailmaster.rb |      'Description: selects MASTER-Jobs - configurations.' |
+| jobdocu.rb |      'Description: selects Job-documentation from the MASTER-Jobs.' |
+| jobs-and-frequencies.rb |      'Description: selects MASTER-Job - configurations and frequencies.' |
+| jobs-and-machgrp.rb |      'Description: show MASTER-Job-configurations in context with machine groups.' |
+| jobs-on-which-machine.rb |      'Description: selects jobnames and machine-groups or machines.' |
+| jobstates.rb |      'Description: selects current job-state (dependend on schedule-date and schedule).' |
+| lsam.rb |      'Description: selects agents, OS, ports, and connect-status.' |
+| machgrp.rb |      'Description: selects machinegroups and machines.' |
+| opcusersignon.rb |      'Description: selects user, login-time and client-version.' |
+| openschedules.rb |      'Description: selects open schedules (not in state completed).' |
+| properties.rb |      'Description: selects properties and values.' |
+| ressources.rb |      'Description: selects resources, jobs and values.' |
+| roles.rb |      'Description: selects roles, included users and their email-adress.' |
+| schedules.rb |      'Description: selects schedules and autobuild-configuration.' |
+| starttimes.rb |      'Description: selects jobs with starttimes (only when start-offset not 0).' |
+| table_space_size.rb |      'Description: EXEC sp_spaceused' |
+
 
 
 
