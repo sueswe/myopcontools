@@ -75,11 +75,11 @@ end
 
 if options[:databaseName]
   DB = "#{options[:databaseName]}"
-  # puts "Name of database: " + DB.red
+  puts "Name of database: " + DB.cyan
 end
 if options[:sched]
-  ls = "#{options[:sched]}"
-  # puts "Schedulename: " + ls.red
+  cal_name = "#{options[:sched]}"
+  puts "Schedulename: " + cal_name.cyan
 end
 
 ################################################################################
@@ -97,15 +97,18 @@ sql = if options[:master]
   )"
       else
         "
-  select CALNAME, SKDNAME, format(convert(smalldatetime,CALDATE-2),'yyyyMMdd') as DATUM
+  select CALNAME, format(convert(smalldatetime,CALDATE-2),'yyyyMMdd') as DATUM
   from CALDATA
   join CALDESC on CALDATA.CALID = CALDESC.CALID
-  JOIN SNAME ON (caldesc.SKDID=SNAME.SKDID)
-  where CALNAME like '%#{ls}'
+  --JOIN SNAME ON (caldesc.SKDID=SNAME.SKDID)
+  where CALNAME like '%#{cal_name}%'
   order by DATUM ASC
   "
       end
 ################################################################################
+
+puts sql
+
 
 
 ################################################################################
