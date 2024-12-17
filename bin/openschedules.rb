@@ -5,24 +5,9 @@
 require 'dbi'
 require 'optionparser'
 require 'colorize'
-require 'json'
-require 'net/http'
+require_relative 'readconfig'
 
-class Read_config
-  require 'yaml'
-  targetDir = ENV['HOME'] + '/bin/'
-  $config = targetDir + 'opcon.yaml'
 
-  def get_dbuser
-    config = YAML.load_file($config)
-    config['opconuser']
-  end
-
-  def get_dbpwd
-    config = YAML.load_file($config)
-    config['opconpassword']
-  end
-end
 
 sql = '
 SELECT top %d convert(datetime,skddate)-2,skdname,count(jobname)
@@ -86,8 +71,9 @@ end
 
 ################################################################################
 def dbConnect
-  $usr = Read_config.new.get_dbuser
-  $pwd = Read_config.new.get_dbpwd
+  include Read_config
+  $usr = Read_config.get_dbuser
+  $pwd = Read_config.get_dbpwd
   dbh = DBI.connect("DBI:ODBC:opconxps_#{$dataBaseShortname}", "#{$usr}", "#{$pwd}")
 end
 ################################################################################
@@ -116,10 +102,3 @@ end
 sth.finish
 dbh.disconnect if dbh
 
-# url = 'https://chat/hook/'
-url = 'https://chat.sozvers.at/services/hook/custom/1/94fc48c4759a11ebb21d0242ac140a08/'
-data = { 'payload' => JSON.dump({ 'username' => 'Name',
-                                  'text' => "Open Schedules @ #{$dataBaseShortname}: #{result}" }) }
-puts data
-
-Net::HTTP.post_form(URI.parse(url), data) unless options[:quiet]

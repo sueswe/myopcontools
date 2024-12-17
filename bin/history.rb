@@ -6,22 +6,9 @@
 require 'dbi'
 require 'colorize'
 require 'optionparser'
+require_relative 'readconfig'
 
-class Read_config
-  require 'yaml'
-  targetDir = ENV['HOME'] + '/bin/'
-  $config = targetDir + 'opcon.yaml'
 
-  def get_dbuser
-    config = YAML.load_file($config)
-    config['opconuser']
-  end
-
-  def get_dbpwd
-    config = YAML.load_file($config)
-    config['opconpassword']
-  end
-end
 
 myname = File.basename(__FILE__)
 
@@ -109,8 +96,9 @@ sql = "
 ################################################################################
 
 def dbConnect
-  $usr = Read_config.new.get_dbuser
-  $pwd = Read_config.new.get_dbpwd
+  include Read_config
+  $usr = Read_config.get_dbuser
+  $pwd = Read_config.get_dbpwd
   dbh = DBI.connect("DBI:ODBC:opconxps_#{DB}", "#{$usr}", "#{$pwd}")
 end
 

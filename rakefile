@@ -27,6 +27,14 @@ task :create_bin do
 end
 
 
+
+task :update do
+  # neue config anlegen, moven falls vorhanden:
+  # mv bin/opcon.yaml $HOME/.opcontoken.yaml 
+end
+
+
+
 desc "Install bin/ruby-files to: ".yellow + targetDir.cyan
 task :install do
     #files = Rake::FileList["odbc/*.rb", "service*/*.rb"]
@@ -53,19 +61,20 @@ task :clean do
     end
 end
 
+
 desc "Write opcon-credentials into a config-file".yellow
 task :create_config do
   logger.info "Trying to create config file ...".blue
-  if File.exists?("#{homeDir}/bin/opcon.yaml")
-    logger.info "#{homeDir}/bin/opcon.yaml already exists."
+  if File.exists?("#{homeDir}/bin/opcontoken.yaml")
+    logger.info "#{homeDir}/bin/opcontoken.yaml already exists."
     #logger.info "Nothing to do.".red
   else
     print "Enter Opcon-Database-Username: "
     dbuser = STDIN.gets.chomp
     print "Enter Opcon-Database-Password: "
     dbpass = STDIN.gets.chomp
-    puts "writing config to #{homeDir}/bin/opcon.yaml ...".yellow
-    f = File.open("#{homeDir}/bin/opcon.yaml", 'w')
+    puts "writing config to #{homeDir}/.opcontoken.yaml ...".yellow
+    f = File.open("#{homeDir}/.opcontoken.yaml", 'w')
     f.puts "opconuser: \"#{dbuser}\""
     f.puts "opconpassword: \"#{dbpass}\""
     f.close

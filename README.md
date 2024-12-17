@@ -123,8 +123,8 @@ In the code, I currently use a prefix for the database-name:
 
 ```ruby
 def dbConnect
-  $usr = Read_config.new.get_dbuser
-  $pwd = Read_config.new.get_dbpwd
+  $usr = Read_config.get_dbuser
+  $pwd = Read_config.get_dbpwd
   dbh = DBI.connect("DBI:ODBC:opconxps_#{DB}","#{$usr}","#{$pwd}")
 end
 
