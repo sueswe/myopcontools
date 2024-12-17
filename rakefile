@@ -30,7 +30,16 @@ end
 
 task :update do
   # neue config anlegen, moven falls vorhanden:
-  # mv bin/opcon.yaml $HOME/.opcontoken.yaml 
+  # mv bin/opcon.yaml $HOME/.opcontoken.yaml
+  oldCOnfigFile = targetDir + '/opcon.yaml'
+  if File.exist?(oldCOnfigFile)
+    puts "Altes config-file gefunden, verschiebe es auf neue location ...".yellow
+    FileUtils.mv(oldCOnfigFile, homeDir + '/.opcontoken.yaml')
+  else
+    puts "(kein altes config-file gefunden)".green
+    puts "Bitte starte 'rake' um zu installieren.".cyan
+  end
+  puts "done.".green
 end
 
 
