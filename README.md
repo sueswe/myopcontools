@@ -59,7 +59,7 @@ and much more.
 
 Now you can prepare your local installation:
 
-For example, on apt-based Linux systems (but it also works with Windows 10, see note below):
+For example, on apt-based Linux systems (but it also works with Windows, see note below):
 
 ```sh
 $ sudo apt install ruby-dev unixodbc unixodbc-dev ruby-bundler

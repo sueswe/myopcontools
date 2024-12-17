@@ -62,7 +62,7 @@ select 	jobname,
 		    replace(replace(replace(deptype,'131','Weiter'),'3','Stop'),'1','Benoetigt') as 'DepType',
 		    b.skdname from jdepjob
 join sname a on jdepjob.skdid = a.skdid join sname b on jdepjob.depskdid = b.skdid
-where a.skdname = '#{SCHEDULENAME}'
+where a.skdname LIKE '#{SCHEDULENAME}'
 "
 
 
