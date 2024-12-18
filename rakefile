@@ -74,8 +74,8 @@ end
 desc "Write opcon-credentials into a config-file".yellow
 task :create_config do
   logger.info "Trying to create config file ...".blue
-  if File.exists?("#{homeDir}/bin/opcontoken.yaml")
-    logger.info "#{homeDir}/bin/opcontoken.yaml already exists."
+  if File.exists?("#{homeDir}/.opcontoken.yaml")
+    logger.info "#{homeDir}/.opcontoken.yaml already exists."
     #logger.info "Nothing to do.".red
   else
     print "Enter Opcon-Database-Username: "
