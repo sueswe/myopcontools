@@ -97,11 +97,13 @@ dbh.disconnect if dbh
 
 t_ok = 0
 t_error = 0
+errorThresholdData = Array.new
 threshold_data.each { 
     x = _1
     if x.split[2].to_i != 0
         puts "Achtung, Ressource ist nicht auf 0 : #{x}".red
         t_error += 1
+        errorThresholdData.push(x)
     else
         # puts "#{x}".green
         t_ok += 1
@@ -109,11 +111,12 @@ threshold_data.each {
 }
 
 where_am_i = %x(hostname)
-puts "#{t_ok}".green + " sind OK, " + "#{t_error}".red + " sind in Verwendung."
+puts "#{t_ok}".green + " sind OK, " + "#{t_error}".red + " sind in Verwendung." 
 
-body = "#{t_ok} sind OK, #{t_error} sind in Verwendung.
+body = "#{t_ok} sind OK (auf 0), #{t_error} sind in Verwendung.\n" + 
+errorThresholdData.to_s + "
 ---
-(This mail was sent from #{myname} @ #{where_am_i})
+This mail was sent from #{myname}@#{where_am_i}
 "
 
 # puts body
