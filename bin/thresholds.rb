@@ -110,15 +110,19 @@ threshold_data.each {
     end
 }
 
-where_am_i = %x(hostname)
-puts "#{t_ok}".green + " sind OK, " + "#{t_error}".red + " sind in Verwendung." 
+if t_error > 0
+  where_am_i = %x(hostname)
+  puts "#{t_ok}".green + " sind OK, " + "#{t_error}".red + " sind in Verwendung." 
 
-body = "#{t_ok} sind OK (auf 0), #{t_error} sind in Verwendung.\n" + 
-errorThresholdData.to_s + "
----
-This mail was sent from #{myname}@#{where_am_i}
-"
+  body = "#{t_ok} sind OK (auf 0), #{t_error} sind in Verwendung.\n" + 
+  errorThresholdData.to_s + "
+  ---
+  This mail was sent from #{myname}@#{where_am_i}
+  "
 
-# puts body
-r = system("mailer -t werner.suess@itsv.at,rz.om.stp@itsv.at -s \"THRESHOLDCHECK #{DB}\" -b \"#{body}\"")
-puts "Sent mail: " + r.to_s
+  # puts body
+  r = system("mailer -t werner.suess@itsv.at,rz.om.stp@itsv.at -s \"THRESHOLDCHECK #{DB}\" -b \"#{body}\"")
+  puts "Sent mail: " + r.to_s
+else
+  puts "#{t_ok}".green + " sind OK, " + "#{t_error}".red + " sind in Verwendung." 
+end
