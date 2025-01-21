@@ -6,7 +6,7 @@
 require 'dbi'
 require 'colorize'
 require 'optionparser'
-
+require_relative 'readconfig'
 
 
 ################################################################################
@@ -99,6 +99,7 @@ end
 #
 ################################################################################
 def dbConnect
+  include Read_config
   $usr = Read_config.get_dbuser
   $pwd = Read_config.get_dbpwd
   dbh = DBI.connect("DBI:ODBC:opconxps_#{DB}", "#{$usr}", "#{$pwd}")

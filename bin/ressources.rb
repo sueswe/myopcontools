@@ -3,7 +3,7 @@
 require 'dbi'
 require 'optionparser'
 require 'colorize'
-
+require_relative 'readconfig'
 
 
 myname = File.basename(__FILE__)
@@ -104,6 +104,7 @@ ORDER BY THRESHDESC
 #
 ################################################################################
 def dbConnect
+  include Read_config
   $usr = Read_config.get_dbuser
   $pwd = Read_config.get_dbpwd
   dbh = DBI.connect("DBI:ODBC:opconxps_#{$dataBaseShortname}", "#{$usr}", "#{$pwd}")
