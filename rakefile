@@ -47,7 +47,7 @@ end
 desc "Install bin/ruby-files to: ".yellow + targetDir.cyan
 task :install do
     #files = Rake::FileList["odbc/*.rb", "service*/*.rb"]
-    files = Rake::FileList["bin/*.rb"]
+    files = Rake::FileList["bin/*.rb","rbtools"]
     #puts files
     #puts "Zielverzeichnis: #{targetDir}"
     files.each do |f|
