@@ -14,6 +14,17 @@ module Read_config
     config['opconpassword']
   end
 
+
+  def get_deployuser
+    config = YAML.load_file($config)
+    config['deployuser']
+  end
+  def get_deploypwd
+    config = YAML.load_file($config)
+    config['deploypassword']
+  end
+
+
   def get_serverport_prodstage
     config = YAML.load_file($config)
     host = config['server_prodstage']
@@ -46,5 +57,8 @@ module Read_config
     token = config['external_token_devstage']
     return token
   end
+
+
+
 
 end

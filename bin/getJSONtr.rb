@@ -5,9 +5,6 @@ require 'colorize'
 require 'optionparser'
 require_relative 'readconfig'
 
-
-
-
 myname = File.basename(__FILE__)
 
 ################################################################################
@@ -54,8 +51,8 @@ tr = if options[:rulename]
 
 def dbConnect
   include Read_config
-  $usr = Read_config.get_dbuser
-  $pwd = Read_config.get_dbpwd
+  $usr = Read_config.get_deployuser
+  $pwd = Read_config.get_deploypwd
   dbh = DBI.connect("DBI:ODBC:#{DB}", "#{$usr}", "#{$pwd}")
 end
 
