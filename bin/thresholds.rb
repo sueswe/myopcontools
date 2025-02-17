@@ -121,7 +121,7 @@ if t_error > 0
   "
 
   # puts body
-  r = system("mailer -t werner.suess@itsv.at,rz.om.stp@itsv.at -s \"THRESHOLDCHECK #{DB}\" -b \"#{body}\"")
+  r = system("mailer -t werner.suess@itsv.at,rz.om.stp@itsv.at -s \"THRESHOLDCHECK #{DB}\" -m \"#{body}\"")
   puts "Sent mail: " + r.to_s
 else
   puts "#{t_ok}".green + " sind OK, " + "#{t_error}".red + " sind in Verwendung." 
