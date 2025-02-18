@@ -86,6 +86,8 @@ task :create_config do
     f = File.open("#{homeDir}/.opcontoken.yaml", 'w')
     f.puts "opconuser: \"#{dbuser}\""
     f.puts "opconpassword: \"#{dbpass}\""
+    f.puts "deployuser: \"deployuser\""
+    f.puts "deploypassword: \"thepassword\""
     f.close
     puts "Thank you."
   end
