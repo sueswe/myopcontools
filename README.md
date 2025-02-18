@@ -84,7 +84,7 @@ $ bundle
 
 
 
-* **NOTE:** If you like to use the toolset under Windows 10, you have to choose an installer with *DEV*-Kit from https://rubyinstaller.org/downloads/
+* **NOTE:** If you like to use the toolset under Windows 11, you have to choose an installer with *DEV*-Kit from https://rubyinstaller.org/downloads/
 
 
 
@@ -144,6 +144,18 @@ $ jobonwhichmachine.rb -d prod -j %somejobname%
 
 (the % is the wildcard for the select-statement in the code.)
 
+
+## Config-File 
+
+I use a yaml-file For authentication against the database.
+Location is: `$HOME/.opcontoken.yaml`
+
+~~~
+opconuser: "ro-user"
+opconpassword: "db-password"
+deployuser: "ro-user"
+deploypassword: "deploypwd"
+~~~
 
 ## Usage
 
